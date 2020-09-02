@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <script src="https://kit.fontawesome.com/26404320e2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <nav class='nav navbar-nav navbar-left' >
+        <span>Bookers</span>
+      </nav>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to user_path(current_user.id) do %>
+                <span class="glyphicon glyphicon-home home"> Home</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to users_path do %>
+                <span class="glyphicon glyphicon-user users"> Users</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to books_path do %>
+                <span class="glyphicon glyphicon-book books"> Books</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path,method: :delete do %>
+                <span class="glyphicon glyphicon-log-out logout"> logout</span>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "/" do %>
+                <span class="glyphicon glyphicon-home home"> Home</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to home_about_path do %>
+                <span class="glyphicon glyphicon-link about"> About</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path do %>
+                <span class="glyphicon glyphicon-edit sign_up"> sign up</span>
+              <% end %>
+            </li>
+             <li>
+              <li><%= link_to ' login', new_user_session_path ,class: 'glyphicon glyphicon-log-in sign_in'%></li>
+            </li>
+          <% end %>
+        </ul>
+    </div>
+    </header>
+
+ <%= yield %>
+
+        <footer>
+          <div class='container'>
+            <div class='row'>
+              <div class='col-xs-3 col-xs-offset-9'>
+                <p>CopyRight Infratop.inc</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+  </body>
+</html>
